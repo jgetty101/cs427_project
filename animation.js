@@ -24,7 +24,7 @@ function animationPipeline() {
   (startAnimation = new TimelineMax({ repeat: 0 })),
     (gameIndex = 0),
     (actualScore = 0),
-    (timerIndex = 8),
+    (timerIndex = 60),
     (runningGameAgain = false),
     (timerObject = undefined),
     (gameQuestions = []),
@@ -38,53 +38,79 @@ function animationPipeline() {
       "http://f5361a5c08a4c03f7c6f-acbeb9602bd0a56bf9c1a6bed3d8280b.r27.cf2.rackcdn.com/wrongSound2.mp3"
     )),
     (questions = [
-      "The acronym CSS means what?",
-      "The acronym PHP means what?",
-      "Who was the creator of Git?",
-      "Django is a web framework for what language?",
-      "Which one of these is a CSS preprocessor?",
-      "A JavaScript catch block is written how?",
-      "What is the function of CSS on a website?",
+      "Decrypt using Ceaser cipher with a shift of 3: 'juhdw mre'",
+      "RSA: With an N modulus of 481 and a decryption key of 173 decipher the following text: '380 105 380 353 322 37 117 353 51 381 350 353 105 350'",
+      "Using the Simple Substution Cipher decrypt: 'ZKGJ GKZ'",
+      "Using the Playfair Cipher encrypt: 'water bottle' using this 5x5 grid 'TUORI ALSBC DEFGH KMNPQ VWXYZ'",
+      "Using the Playfair Cipher decrypt: 'VL UD BG RU UA HW' using this 5x5 grid 'TUORI ALSBC DEFGH KMNPQ VWXYZ'",
+      "RSA: With an N modulus of 481 and a encryption key of 5 encrypt the following text: 'did you get it'",
+      "Using the Transposition Cipher decrypt with a key of 5: 'TRTWOHOTALIJOYOSEOTNPCKOG'",
       "What does the &#60;b&#62; tag do in HTML?",
       "What language was GSAP originally written in?",
       "What type of file is a SVG file?",
     ]),
     (answers = [
       [
-        "Cool Style Sheets",
-        "Crummy Style Sheets",
-        "Cascading Style Sheets",
-        "Colored Style Sheets",
+        "steak bad",
+        "alphabet soup",
+        "great job",
+        "doorknob"
       ],
       [
-        "PHP: Hypertext Preprocessor",
-        "Personal Hypertext Preprocessor",
-        "PHP",
-        "Patronizing Hypertext Preprocessor",
-      ],
-      ["Steve Jobs", "Linus Torvalds", "Steven Seagal", "Tom Preston-Werner"],
-      ["Ruby", "JavaScript", "PHP", "Python"],
-      ["HTML", "React", "SASS", "Lua"],
-      [
-        "catch(Exception $e){}",
-        "catch(Exception e){}",
-        "except Exception as inst",
-        "catch(err){}",
+        "did you get it",
+        "clam ham sandwich",
+        "this is the answer",
+        "Patronizing Hypertext Preprocessor"
       ],
       [
-        "Markup web pages",
-        "Output data to a client",
-        "Used to describe look and format of markup",
-        "NOTHING",
+        "cheese steak", 
+        "taco cat", 
+        "richard jefferson", 
+        "corn dog"
+      ],
+      [
+        "ER TY DC VR JS AU", 
+        "PO FC RS GJ ML QW", 
+        "RJ KB TP JB HG YZ", 
+        "VL UD BG RU UA HW"
+      ],
+      [
+        "giant raptor", 
+        "water bottle", 
+        "water bottlez", 
+        "orange candle"
+      ],
+      [
+        "830 150 308 533 232 73 711 335 15 831 503 533 510 503",
+        "456 123 937 058 937 69 207 673 95 528 629 119 923 728",
+        "380 092 710 290 482 31 725 824 66 829 947 018 997 018",
+        "380 105 380 353 322 37 117 353 51 381 350 353 105 350"
+      ],
+
+      [
+        "The trex is my favorite",
+        "Is this the correct answer",
+        "This project took way too long",
+        "no dont pick this one"
       ],
       [
         "Break to a new line",
         "Insert server data",
         "Bold Text",
-        "Bullet Point",
+        "Bullet Point"
       ],
-      ["VBScript", "ActionScript", "Silverlight", "JavaScript"],
-      ["Bitmap", "Vector", "Raster", "GIF"],
+      [
+        "VBScript", 
+        "ActionScript", 
+        "Silverlight", 
+        "JavaScript"
+      ],
+      [
+        "Bitmap", 
+        "Vector", 
+        "Raster", 
+        "GIF"
+      ]
     ]),
     (correctAnswers = [2, 0, 1, 3, 2, 3, 2, 2, 1, 1]),
     (gameAnswers = []);
@@ -138,8 +164,8 @@ function animationPipeline() {
    **/
   self.fireOffGameLogic = function () {
     self.runTimer();
-    gameMusic.currentTime = 0;
-    gameMusic.play();
+    //gameMusic.currentTime = 0;
+    //gameMusic.play();
   };
 
   /**
@@ -169,7 +195,7 @@ function animationPipeline() {
   self.updateClock = function () {
     timerIndex--;
     if (timerIndex == -1) {
-      timerIndex = 8;
+      timerIndex = 60;
       gameIndex++;
     }
 
@@ -178,7 +204,7 @@ function animationPipeline() {
       // end the game
       self.runEndOfGame();
       return;
-    } else if (timerIndex == 8) {
+    } else if (timerIndex == 60) {
       self.setupUserInterfaceWithData();
     }
     // Display updated time
@@ -191,8 +217,8 @@ function animationPipeline() {
    **/
   self.anwerClicked = function (e) {
     clearTimeout(timerObject);
-    gameMusic.pause();
-    gameMusic.currentTime = 0;
+    //gameMusic.pause();
+    //gameMusic.currentTime = 0;
     // Get the answer index
     var answerIndex = Number(e.target.getAttribute("data-index"));
     // Get the actual answer index
@@ -200,7 +226,7 @@ function animationPipeline() {
 
     // Correct answer
     if (actualCorrectAnswerIndex == answerIndex) {
-      rightAnswer.play();
+      //rightAnswer.play();
       actualScore += 10;
       scoreSpan[0].textContent = actualScore;
       cancelButtons = true;
@@ -210,7 +236,7 @@ function animationPipeline() {
       );
       // Incorrect Answer
     } else {
-      wrongAnser.play();
+      //wrongAnser.play();
       cancelButtons = true;
       self.dispatch_modal(
         'YOUR ANSWER IS: <span class="incorrect">INCORRECT!</span>',
@@ -301,11 +327,11 @@ function animationPipeline() {
           gameIndex++;
           // Determine if we need to run another game loop
           if (gameIndex != gameQuestions.length) {
-            timerIndex = 8;
+            timerIndex = 60;
             timerSpan[0].textContent = timerIndex;
             self.setupUserInterfaceWithData();
             self.runTimer();
-            gameMusic.play();
+            //gameMusic.play();
           } else {
             self.runEndOfGame();
           }
@@ -372,7 +398,7 @@ function animationPipeline() {
     gameIndex = 0;
     gameAnswers = [];
     actualScore = 0;
-    timerIndex = 8;
+    timerIndex = 60;
     gameQuestions = [];
     // Get the game indexes
     self.generateGameIndexes();
@@ -383,8 +409,8 @@ function animationPipeline() {
     scoreSpan[0].textContent = actualScore;
     timerSpan[0].textContent = timerIndex;
     self.runTimer();
-    gameMusic.currentTime = 0;
-    gameMusic.play();
+    //gameMusic.currentTime = 0;
+    //gameMusic.play();
   };
 
   /**
