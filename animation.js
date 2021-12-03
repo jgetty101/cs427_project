@@ -45,9 +45,9 @@ function animationPipeline() {
       "Using the Playfair Cipher decrypt: 'VL UD BG RU UA HW' using this 5x5 grid 'TUORI ALSBC DEFGH KMNPQ VWXYZ'",
       "RSA: With an N modulus of 481 and a encryption key of 5 encrypt the following text: 'did you get it'",
       "Using the Transposition Cipher decrypt with a key of 5: 'TRTWOHOTALIJOYOSEOTNPCKOG'",
-      "What does the &#60;b&#62; tag do in HTML?",
-      "What language was GSAP originally written in?",
-      "What type of file is a SVG file?",
+      "A typical cookie has: ",
+      "Which are types of XSS?",
+      "What are the advantages of CSP?",
     ]),
     (answers = [
       [
@@ -94,25 +94,25 @@ function animationPipeline() {
         "no dont pick this one"
       ],
       [
-        "Break to a new line",
-        "Insert server data",
-        "Bold Text",
-        "Bullet Point"
+        "SID",
+        "domain",
+        "flags",
+        "All of the above"
       ],
       [
-        "VBScript", 
-        "ActionScript", 
-        "Silverlight", 
-        "JavaScript"
+        "Stored", 
+        "Reflected", 
+        "Everlast", 
+        "Stored and Reflected"
       ],
       [
-        "Bitmap", 
-        "Vector", 
-        "Raster", 
-        "GIF"
+        "Higher rigidity and lower flexibility", 
+        "Prevents stored xss and reflected xss", 
+        "does not allow for grandular control of web content access", 
+        "higher bureaucratic overhead"
       ]
     ]),
-    (correctAnswers = [2, 0, 1, 3, 2, 3, 2, 2, 1, 1]),
+    (correctAnswers = [2, 0, 1, 3, 2, 3, 2, 3, 3, 1]),
     (gameAnswers = []);
 
   /**
@@ -349,8 +349,8 @@ function animationPipeline() {
       window.innerWidth ||
       document.documentElement.clientWidth ||
       document.body.clientWidth;
-    var tweetButton =
-      '<button id="tweekScore" class="left twitter" onClick="self.tweetScore()">TWEET SCORE</button>';
+     var tweetButton =
+      '<button id="tweekScore" class="left twitter" onClick="self.tweetScore()">TWEET SCORE</button>'; 
     var playAgainButton =
       '<button id="playAgain" class="left" onClick="self.resetGame()">PLAY AGAIN</button>';
     var actualScoreHeader =
@@ -366,12 +366,12 @@ function animationPipeline() {
   /**
    * The tweets score function allows a user to post their score to twitter
    **/
-  self.tweetScore = function () {
-    var u = "https://codepen.io/agnosticdev/pen/ZbWjaB";
+   self.tweetScore = function () {
+    var u = "https://github.com/jgetty101/cs427_project";
     var text =
-      "I just played Web Trivia Game on @CodePen and scored: " +
+      "I just played Web Security Game and scored: " +
       actualScore +
-      " points! @matt_815";
+      " points!";
     var url =
       "https://twitter.com/intent/tweet?original_referer=" +
       u +
@@ -384,7 +384,7 @@ function animationPipeline() {
       newWindow.focus();
     }
     return false;
-  };
+  }; 
   /**
    * This function resets the game and starts it all over again
    * This function acts as to reset all data from scratch
